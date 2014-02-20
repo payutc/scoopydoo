@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Gestion des droits{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Activer navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{url_for('base.index')}}">retour</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connecté : {{ username }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('cas.logout') }}">Déconnection</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block body %}
+<div class="col-md-12">
+  <div class="well">
+    <div class="text-center">
+      <h2>Gestion des droits pour :</h2>
+      {% for fun in funs %}
+        <a href="{{url_for('droits.fundation', fun=fun.fun_id)}}"><button type="button" class="btn btn-success">{{fun.name}}</button></a>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

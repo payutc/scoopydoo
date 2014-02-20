@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from "_formhelper.html" import render_field %}
+{% block title %}Changement de message{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Activer navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{url_for('messages.index')}}">retour</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connecté : {{ username }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('cas.logout') }}">Déconnection</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block body %}
+<div class="col-md-12">
+  <div class="well">
+    <h2>{{fundation.name}}</h2>
+  </div>
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="row">
+      <form role="form" class="form-horizontal" method="post" action="{{url_for('messages.change', fun=fundation.fun_id) }}">
+        <div class="form-group">
+          {{ render_field(form.message) }}
+        </div>
+        <button type="submit" class="btn btn-default">Changer</button>
+        <a href="{{url_for('messages.index')}}"><input class="btn btn-danger" type="button" value="Annuler"></a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

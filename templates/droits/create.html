@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% from "_formhelper.html" import render_field %}
+{% block title %}Gestion des droits{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Activer navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{url_for('base.index')}}">retour</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connecté : {{ username }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('cas.logout') }}">Déconnection</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block body %}
+<div class="row">
+  <div class="col-md-4 well">
+    <h4>Liste des personnes avec des droits</h4>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <thead><tr><th>Login</th><th>Prénom</th><th>Nom</th><th>Droits actuels</th><th>Modifier</th></tr></thead>
+      {% for user in users.values() %}
+        <tr><td><b>{{user['usr_login']}}</b></td><td>{{user['usr_firstname']}}</td><td>{{user['usr_lastname']}}</td><td>{{ user["service"]|join(", ", attribute="service")}}</td><td><a href="{{ url_for('droits.user', fun=fun, usr=user['usr_id'])}}"><span class="glyphicon glyphicon-cog"></span></a></td></tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead><tr><th>Service</th><th>Nom</th><th>Description</th></tr></thead>
+      {% for service in services %}
+        <tr><td><b>{{service["service"]}}</b></td><td>{{service["name"]}}</td><td>{{service["desc"]}}</td></tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

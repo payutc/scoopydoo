@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% from "_formhelper.html" import render_field %}
+{% block title %}Blocage utilisateur{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Activer navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{url_for('base.index')}}">retour</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connecté : {{ username }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('cas.logout') }}">Déconnection</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block body %}
+<div class="col-md-12">
+  <div class="well">
+    <h2>Changer un blocage</h2>
+  </div>
+  <div class="col-md-4 col-md-offset-4 text-center">
+    <form class="form" role="form" method="post" action="{{ url_for('blocage.change', blo=blo, fun=fun) }}">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Login</label>
+        <div class="col-sm-8">
+          <p class="form-control-static">{{blocage.login}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">Début</label>
+        <div class="col-sm-8">
+          <p class="form-control-static">{{blocage.blo_insert}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        {{ render_field(form.raison, blocage.blo_raison) }}
+      </div>
+      <div class="form-group">
+        {{ render_field(form.end, blocage.blo_removed) }}
+      </div>
+      <button class="btn btn-default" type="submit">Changer</button>
+      <a href="{{url_for('blocage.index')}}"><input class="btn btn-danger" type="button" value="Annuler"></a>
+    </form>
+  </div>
+</div>
+{% endblock %}

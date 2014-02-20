@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% from "_formhelper.html" import render_field, render_field_placeholder %}
+{% block title %}Blocage utilisateur{% endblock %}
+{% block nav %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Activer navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{{url_for('base.index')}}">retour</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Connecté : {{ username }} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ url_for('cas.logout') }}">Déconnection</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
+{% block body %}
+{% for fun in funs %}
+<div class="blo col-md-12">
+  <div class="well">
+    <h2>{{fun.name}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <h4 class="well">Bloquer quelqu’un</h4>
+      <form class="form-horizontal" role="form" method="post" action="{{ url_for('blocage.block', fun=fun.fun_id) }}">
+        <div class="form-group">
+          {{ render_field(form.user) }}
+        </div>
+        <div class="form-group">
+          {{ render_field(form.raison) }}
+        </div>
+        <div class="form-group">
+          {{ render_field(form.start, start_placeholder) }}
+        </div>
+        <div class="form-group">
+          {{ render_field(form.end, end_placeholder) }}
+        </div>
+        <button class="btn btn-default" type=submit>Bloquer</button>
+      </form>
+    </div>
+    <div class="col-md-9">
+      <h4>Blocages en cours</h4>
+      
+      <table class="table table-stripped text-center">
+        <thead><tr><th>Login</th><th>Prénom</th><th>Nom</th><th>Raison</th><th>Début</th><th>Fin</th><th>Modifier</th><th>Terminer</th></tr></thead>
+        <tbody>
+          {% if fun.blocked %}
+            {% for id, blocked in fun.blocked.items() %}
+            <tr><td>{{blocked.login}}</td><td>{{blocked.usr_firstname}}</td><td>{{blocked.usr_lastname}}</td><td>{{blocked.blo_raison}}</td><td>{{blocked.blo_insert}}</td><td>{{blocked.blo_removed}}</td><td><a href="{{ url_for('blocage.change',fun=fun.fun_id, blo=id)}}"><span class="glyphicon glyphicon-cog"></span></a></td><td><a href="{{ url_for('blocage.remove',fun=fun.fun_id, blo=id)}}"><span class="glyphicon glyphicon-remove"></span></a></td></tr>
+            {% endfor %}
+          {% else %}
+          <tr><td>Personne</td></tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+{% endblock %}

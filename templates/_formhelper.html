@@ -1,0 +1,19 @@
+{# tiré de http://flask.pocoo.org/docs/patterns/wtforms/#forms-in-templates #}
+
+{% macro render_field(field, placeholder=None) %}
+  {{ field.label(class="control-label col-sm-4") }}
+  <div class="col-sm-8">
+    {% if placeholder %}
+    {{ field(class="form-control", placeholder=placeholder)|safe }}
+    {% else %}
+    {{ field(class="form-control")|safe }}
+    {% endif %}
+  </div>
+  {% if field.errors %}
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

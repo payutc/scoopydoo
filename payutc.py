@@ -6,6 +6,8 @@ import conf
 
 class Payutc(PayutcJsonClient):
 
+    """ Surclasse du client json avec du syntaxic sugar pour quelques fonctions """
+
     def __init__(self, service="POSS3"):
         super(Payutc, self).__init__(conf.PAYUTC_URL, service, conf.PAYUTC_USER_AGENT)
 

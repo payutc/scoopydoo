@@ -13,6 +13,9 @@ bp = Blueprint('messages', __name__, url_prefix='/messages')
 @user_required
 @check_right("MESSAGES")
 def index():
+
+     """ Index de la gestion des messages """
+    
      username=session["username"]
      payutc = Payutc("MESSAGES")
      payutc.set_cookie(session["cookie"])
@@ -25,6 +28,14 @@ def index():
 @user_required
 @check_right("MESSAGES")
 def change(fun):
+
+     """ Change le message d'une fundation
+
+    Arguments :
+    fun -- id de la fundation concernée
+    (nécessite un MessageChangeForm valide)
+    
+    """
      payutc = Payutc("MESSAGES")
      payutc.set_cookie(session["cookie"])
      funs = payutc.get_funs()

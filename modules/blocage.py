@@ -15,6 +15,9 @@ payutc = Payutc("BLOCKED")
 @user_required
 @check_right("BLOCKED")
 def index():
+     
+     """ Index de la gestion des blocages pour les fundations dont l'utilisateur a les droits """
+     
      payutc.set_cookie(session["cookie"])
      username=session["username"]
      funs = payutc.get_funs()
@@ -32,6 +35,15 @@ def index():
 @user_required
 @check_right("BLOCKED")
 def block(fun):
+
+     """ Bloque un utilisateur dans la fundation fun
+
+     Arguments :
+     fun -- id de la fundation concernée
+     (nécessite un BlockForm valide)
+    
+     """
+    
      payutc.set_cookie(session["cookie"])
      username = session["username"]
      form = BlockForm(request.form)
@@ -59,6 +71,16 @@ def block(fun):
 @user_required
 @check_right("BLOCKED")
 def change(fun, blo):
+
+     """ Change le blocage d'un utilisateur
+
+    Arguments :
+    fun -- id de la fundation concernée
+    blo -- id du blocage concerné
+    (nécessite un BlockChangeForm valide)
+    
+    """
+    
      username = session["username"]
      payutc.set_cookie(session["cookie"])
 
@@ -103,6 +125,15 @@ def change(fun, blo):
 @user_required
 @check_right("BLOCKED")
 def remove(fun, blo):
+
+     """ Retire un blocage
+     
+     Arguments :
+     fun -- id de la fundation concernée
+     blo -- id du blocage concerné
+    
+     """
+    
      payutc.set_cookie(session["cookie"])
      try:
           payutc.call("remove", fun_id=fun, blo_id=blo)

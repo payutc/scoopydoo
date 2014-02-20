@@ -15,6 +15,12 @@ payutc = Payutc("GESARTICLE")
 @user_required
 @check_right("GESARTICLE")
 def index():
+
+    """ Index de la gestion des articles, permet de choisir une fundation si l'utilisateur a le choix parmi plusieurs,
+    sinon renvoie vers la gestion de la fundation directement
+    
+    """  
+    
     payutc.set_cookie(session["cookie"])
     username = session["username"]
     funs = payutc.get_funs()
@@ -26,6 +32,13 @@ def index():
 @user_required
 @check_right("GESARTICLE")
 def fundation(fun):
+
+    """ Gestion des articles d'une fundation, permet l'ajout de catégories et d'articles
+
+    Arguments :
+    fun -- id de la fundation concernée
+    
+    """  
     payutc.set_cookie(session["cookie"])
     username = session["username"]
     fundation = [f for f in payutc.get_funs() if f["fun_id"] == fun][0]
@@ -54,6 +67,14 @@ def fundation(fun):
 @user_required
 @check_right("GESARTICLE")
 def add_article(fun):
+
+    """ Ajout d'un article, accessible suite a une requête POST 
+
+    Arguments :
+    fun -- id de la fundation concernée
+    (nécessité d'un formulaire AddArticleForm bien rempli)
+    
+    """ 
     payutc.set_cookie(session["cookie"])
     username = session["username"]
 
@@ -90,6 +111,14 @@ def add_article(fun):
 @user_required
 @check_right("GESARTICLE")
 def add_category(fun):
+
+    """ Ajout d'une catégorie, accessible suite a une requête POST 
+
+    Arguments :
+    fun -- id de la fundation concernée
+    (nécessité d'un formulaire AddCategoryForm bien rempli)
+    
+    """ 
     payutc.set_cookie(session["cookie"])
     username = session["username"]
 
@@ -123,6 +152,15 @@ def add_category(fun):
 @user_required
 @check_right("GESARTICLE")
 def del_article(fun, art):
+
+    """ Suppression d'un article
+
+    Arguments :
+    fun -- id de la fundation concernée
+    art -- id de l'article
+    
+    """
+    
     payutc.set_cookie(session["cookie"])
     username = session["username"]
 
@@ -145,6 +183,15 @@ def del_article(fun, art):
 @user_required
 @check_right("GESARTICLE")
 def del_category(fun, cat):
+
+    """ Suppression d'une catégorie
+
+    Arguments :
+    fun -- id de la fundation concernée
+    cat -- id de la catégorie
+    
+    """
+    
     payutc.set_cookie(session["cookie"])
     username = session["username"]
 

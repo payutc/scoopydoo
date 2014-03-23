@@ -13,7 +13,6 @@ payutc = Payutc()
 
 @bp.route('/login')
 def login():
-
     """ Loggue un utilisateur sur le cas """
      
     if session.has_key('logged_in') and session["logged_in"]:
@@ -35,7 +34,6 @@ def login():
 @bp.route("/")
 @user_required
 def index():
-
     """ Page d'accueil """
     
     payutc.client.set_cookie(session["cookie"])
@@ -47,7 +45,6 @@ def index():
 @bp.route("/logout")
 @user_required
 def logout():
-
     """ Déconnection du CAS """
     
     session["logged_in"] = False

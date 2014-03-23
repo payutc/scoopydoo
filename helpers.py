@@ -8,7 +8,6 @@ from flask import Blueprint, redirect, url_for, session, abort
 from functools import wraps
 
 def user_required(f):
-
     """ Décorateur qui vérifie si un utilisateur est loggé et sinon redirige vers le CAS """
 
     @wraps(f)
@@ -23,7 +22,6 @@ def user_required(f):
     return decorator
 
 def check_right(service):
-
     """ Décorateur qui vérifie si l'utilisateur a les droits sur le service et sinon renvoie un code 403
 
     Arguments :
@@ -41,7 +39,6 @@ def check_right(service):
         
 # Inspiré de https://github.com/mattupstate/overholt/blob/master/overholt/helpers.py (MIT license)
 def register_blueprints(app, package_name=None, package_path="."):
-    
     """Register all Blueprint instances on the specified Flask application found
     in all modules for the specified package.
 

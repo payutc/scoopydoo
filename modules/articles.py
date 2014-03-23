@@ -15,7 +15,6 @@ payutc = Payutc("GESARTICLE")
 @user_required
 @check_right("GESARTICLE")
 def index():
-
     """ Index de la gestion des articles, permet de choisir une fundation si l'utilisateur a le choix parmi plusieurs,
     sinon renvoie vers la gestion de la fundation directement
     
@@ -32,7 +31,6 @@ def index():
 @user_required
 @check_right("GESARTICLE")
 def fundation(fun):
-
     """ Gestion des articles d'une fundation, permet l'ajout de catégories et d'articles
 
     Arguments :
@@ -67,7 +65,6 @@ def fundation(fun):
 @user_required
 @check_right("GESARTICLE")
 def add_article(fun):
-
     """ Ajout d'un article, accessible suite a une requête POST 
 
     Arguments :
@@ -111,7 +108,6 @@ def add_article(fun):
 @user_required
 @check_right("GESARTICLE")
 def add_category(fun):
-
     """ Ajout d'une catégorie, accessible suite a une requête POST 
 
     Arguments :
@@ -152,7 +148,6 @@ def add_category(fun):
 @user_required
 @check_right("GESARTICLE")
 def del_article(fun, art):
-
     """ Suppression d'un article
 
     Arguments :
@@ -183,7 +178,6 @@ def del_article(fun, art):
 @user_required
 @check_right("GESARTICLE")
 def del_category(fun, cat):
-
     """ Suppression d'une catégorie
 
     Arguments :

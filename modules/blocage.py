@@ -15,7 +15,6 @@ payutc = Payutc("BLOCKED")
 @user_required
 @check_right("BLOCKED")
 def index():
-     
      """ Index de la gestion des blocages pour les fundations dont l'utilisateur a les droits """
      
      payutc.set_cookie(session["cookie"])
@@ -35,7 +34,6 @@ def index():
 @user_required
 @check_right("BLOCKED")
 def block(fun):
-
      """ Bloque un utilisateur dans la fundation fun
 
      Arguments :
@@ -71,7 +69,6 @@ def block(fun):
 @user_required
 @check_right("BLOCKED")
 def change(fun, blo):
-
      """ Change le blocage d'un utilisateur
 
     Arguments :
@@ -125,7 +122,6 @@ def change(fun, blo):
 @user_required
 @check_right("BLOCKED")
 def remove(fun, blo):
-
      """ Retire un blocage
      
      Arguments :

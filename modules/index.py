@@ -15,8 +15,8 @@ implemented = conf.IMPLEMENTED
 @bp.route("/")
 @user_required
 def index():
-
     """ Page d'accueil de scoopydoo """
+    
     payutc.set_cookie(session["cookie"])
     username = session["username"]
     services = [implemented[service] for service in session["services"] if service in implemented]

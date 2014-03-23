@@ -6,7 +6,6 @@ from helpers import register_blueprints
 import conf
 
 def create_app():
-
     """ Fonction créant l'app en tant que telle, on va chercher les blueprints dans le dossier modules et
     on les enregistre, on attache aussi les errorhandlers.
 

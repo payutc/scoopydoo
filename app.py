@@ -7,6 +7,11 @@ import conf
 
 def create_app():
 
+    """ Fonction créant l'app en tant que telle, on va chercher les blueprints dans le dossier modules et
+    on les enregistre, on attache aussi les errorhandlers.
+
+    """
+
     app = Flask(__name__)
     register_blueprints(app)
     register_blueprints(app, "modules", ["modules"])

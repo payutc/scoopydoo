@@ -13,6 +13,9 @@ payutc = Payutc()
 
 @bp.route('/login')
 def login():
+
+    """ Loggue un utilisateur sur le cas """
+     
     if session.has_key('logged_in') and session["logged_in"]:
         return redirect(url_for("base.index"))
 
@@ -24,7 +27,6 @@ def login():
         payutc.login_app()
         session['cookie'] = payutc.get_cookie()
         session['services'] = payutc.call("getEnabledServices")
-        print session['services']
         session['logged_in'] = True
         flash('Bienvenue', 'success')
         return redirect(url_for('base.index'))
@@ -33,6 +35,9 @@ def login():
 @bp.route("/")
 @user_required
 def index():
+
+    """ Page d'accueil """
+    
     payutc.client.set_cookie(session["cookie"])
     username = session["username"]
     services = [implemented[service] for service in session["services"] if service in implemented]
@@ -42,6 +47,9 @@ def index():
 @bp.route("/logout")
 @user_required
 def logout():
+
+    """ Déconnection du CAS """
+    
     session["logged_in"] = False
     return redirect("%slogout/?url=%s" % (payutc.get_cas_url(), conf.HOSTNAME))
     

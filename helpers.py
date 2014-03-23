@@ -8,6 +8,9 @@ from flask import Blueprint, redirect, url_for, session, abort
 from functools import wraps
 
 def user_required(f):
+
+    """ Décorateur qui vérifie si un utilisateur est loggé et sinon redirige vers le CAS """
+
     @wraps(f)
     def decorator(*args, **kwargs):
         try:
@@ -20,6 +23,13 @@ def user_required(f):
     return decorator
 
 def check_right(service):
+
+    """ Décorateur qui vérifie si l'utilisateur a les droits sur le service et sinon renvoie un code 403
+
+    Arguments :
+    service -- service dont il faut vérifier les droits
+    
+    """
     def decorator(f):
         @wraps(f)
         def wrapping(*args, **kwargs):
@@ -31,13 +41,16 @@ def check_right(service):
         
 # Inspiré de https://github.com/mattupstate/overholt/blob/master/overholt/helpers.py (MIT license)
 def register_blueprints(app, package_name=None, package_path="."):
+    
     """Register all Blueprint instances on the specified Flask application found
     in all modules for the specified package.
 
     :param app: the Flask application
     :param package_name: the package name
     :param package_path: the package path
+    
     """
+    
     for _, name, _ in pkgutil.iter_modules(package_path):
         import_string = '%s.%s' % (package_name, name) if package_name else name
         m = importlib.import_module(import_string)

@@ -16,6 +16,8 @@ implemented = conf.IMPLEMENTED
 @user_required
 @check_right("POSS3")
 def index():
+
+    """ Index de la page de vente physique """
     payutc.set_cookie(session["cookie"])
     username = session["username"]
     services = [implemented[service] for service in session["services"] if service in implemented]

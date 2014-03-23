@@ -13,7 +13,6 @@ bp = Blueprint('messages', __name__, url_prefix='/messages')
 @user_required
 @check_right("MESSAGES")
 def index():
-
      """ Index de la gestion des messages """
     
      username=session["username"]
@@ -28,7 +27,6 @@ def index():
 @user_required
 @check_right("MESSAGES")
 def change(fun):
-
      """ Change le message d'une fundation
 
     Arguments :

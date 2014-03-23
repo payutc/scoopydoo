@@ -15,7 +15,6 @@ payutc = Payutc("ADMINRIGHT")
 @user_required
 @check_right("ADMINRIGHT")
 def index():
-
     """ Index de la gestion des droits, permet la sélection de la fundation sur laquelle on veut agir """
     
     payutc.set_cookie(session["cookie"])
@@ -30,7 +29,6 @@ def index():
 @user_required
 @check_right("ADMINRIGHT")
 def fundation(fun):
-
     """ Page de gestion des droits sur une fundation
 
     Arguments :
@@ -51,7 +49,6 @@ def fundation(fun):
 @user_required
 @check_right("ADMINRIGHT")
 def user(fun, usr):
-
     """ Page de gestion des droits pour un utilisateur dans un fun
 
     Arguments :
@@ -79,7 +76,6 @@ def user(fun, usr):
 @user_required
 @check_right("ADMINRIGHT")
 def add(fun, usr, service):
-
     """ Ajoute un droit (service) sur un utilisateur dans une fun qui a déja des droits (!)
 
     Arguments :
@@ -103,7 +99,6 @@ def add(fun, usr, service):
 @user_required
 @check_right("ADMINRIGHT")
 def delete(fun, usr, service):
-
     """ Supprime un droit (service) sur un utilisateur dans une fun
 
     Arguments :
@@ -127,7 +122,6 @@ def delete(fun, usr, service):
 @user_required
 @check_right("ADMINRIGHT")
 def create(fun):
-
     """ Crée un droit (service) sur un utilisateur dans une fun qui n'a aucun droit sur la fun
 
     Arguments :

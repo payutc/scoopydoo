@@ -77,7 +77,7 @@ def add_article(fun):
 
     form = AddArticleForm(request.form)
 
-    if form.validate:
+    if form.validate():
 
         if form.stock.data is None:
             form.stock.data = "0"
@@ -120,7 +120,7 @@ def add_category(fun):
 
     form = AddCategoryForm(request.form)
 
-    if form.validate:
+    if form.validate():
         parent = ""
         
         if form.parent.data != "0":
